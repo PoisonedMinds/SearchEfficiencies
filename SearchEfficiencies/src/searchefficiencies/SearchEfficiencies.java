@@ -17,34 +17,35 @@ public class SearchEfficiencies {
     public static void main(String[] args) {
         int number, amount, index;//generate random numbers
         long time = 0;
-        boolean found = false;
+        boolean found;
         amount = Integer.parseInt(JOptionPane.showInputDialog("How many random numbers do you want to generate."));
         int nums[] = new int[amount];
         System.out.print("The unsorted list is: ");//output the unsorted list
         for (int i = 0; i < amount; i++) {
-            nums[i] = (int) (Math.random() * 1001);
+            nums[i] = (int) (Math.random() * 10001);//switched from 1000 to 10000 to show that the searches are very quick
             System.out.print(nums[i] + ", ");
 
         }
-        number = Integer.parseInt(JOptionPane.showInputDialog("What number do you want to search for?"));
-        System.out.println("Unsorted linear search");
-        time = System.currentTimeMillis();
+        number = Integer.parseInt(JOptionPane.showInputDialog("What number do you want to search for?"));//get the number to search for
+        System.out.println("\n\nUnsorted linear search");
+        time = System.currentTimeMillis();//get the current time
         for (int i = 0; i < nums.length; i++) {
-            counter++;
+            counter++;//count iterations and comparisons
             if (nums[i] == number) {
                 found = true;
                 break;
             }
         }
-        time = System.currentTimeMillis() - time;
+        time = System.currentTimeMillis() - time;//calculate time that the search took
         System.out.println("The unsorted linear search with a 'break' command took: " + time + " miliseconds\nit made: " + counter + " iterations and comparisons");
-        time = 0;
+        time = 0;//reset values
         counter = 0;
-        quickSort(nums, 0, nums.length - 1);
-        System.out.println("\n\nSorted linear search");
-        time = System.currentTimeMillis();
+        System.out.println("Sorting...");
+        quickSort(nums,0,nums.length-1);
+        System.out.println("Sorting done.\n\nSorted linear search");
+        time = System.currentTimeMillis();//get current time
         for (int k = 0; k < nums.length; k++) {
-            counter++;
+            counter++;//counter iterations and comparisons
             counter2++;
 
             if (nums[k] == (number)) {
@@ -58,21 +59,21 @@ public class SearchEfficiencies {
                 break;
             }
         }
-        time = System.currentTimeMillis() - time;
+        time = System.currentTimeMillis() - time;//calculate time the search took
         System.out.println("The sorted linear search with a 'break' command took: " + time + " miliseconds\nit made: " + counter + " iterations and " + counter2 + " comparisons");
         time = 0;
         counter = 0;
         counter2 = 0;
-        time = System.currentTimeMillis();
-        index = binarySearch(nums, 0, nums.length - 1, number);
-        counter2++;
+        time = System.currentTimeMillis();//get time
+        index = binarySearch(nums, 0, nums.length - 1, number);//start search
+        counter2++;//increase comparisons counter to keep track of the final comparison
 
         if (index != -1) {
             found = true;
         } else {
             found = false;
         }
-        time = System.currentTimeMillis() - time;
+        time = System.currentTimeMillis() - time;//calculate time the search took
         System.out.println("\n\nBinary Search\nThe binary search took: " + time + " miliseconds\nit made: " + counter + " iterations and " + counter2 + " comparisons");
 
     }
@@ -109,26 +110,25 @@ public class SearchEfficiencies {
         }
         nums[start] = number;//place the stored number in the correct spot
         return start;//return this spot
-
     }
 
     private static int binarySearch(int nums[], int lower, int upper, int key) {//Else statements dont need to be included becasue it is not a comparison.
-        counter++;
-        counter2++;
+        counter++;//increase iterations counter
+        counter2++;//increase comparisons counter
 
         if (upper - lower > 1) {//if there is more than one then left in the list, search it
-            counter2++;
+            counter2++;//increase comparisons counter
 
             if (key > (nums[(upper + lower) / 2])) {//key is larger than the number at this index
                 lower = (upper + lower) / 2;//reassign lower index
                 return binarySearch(nums, lower, upper, key);
 
             } else if (key < (nums[(upper + lower) / 2])) {//key is smaller than the number at this index
-                counter2++;
+                counter2++;//increase comparisons counter
                 upper = (upper + lower) / 2;//reassign upper index
                 return binarySearch(nums, lower, upper, key);
             } else {
-                counter2++;
+                counter2++;//increase comparisons counter
 
                 return (upper + lower) / 2;//return index
             }

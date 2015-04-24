@@ -16,8 +16,8 @@ public class SearchEfficiencies {
 
     public static void main(String[] args) {
         int number, amount, index;//generate random numbers
-        long time = 0;
-        boolean found;
+        long time;
+//        boolean found;
         amount = Integer.parseInt(JOptionPane.showInputDialog("How many random numbers do you want to generate."));
         int nums[] = new int[amount];
         System.out.print("The unsorted list is: ");//output the unsorted list
@@ -32,7 +32,6 @@ public class SearchEfficiencies {
         for (int i = 0; i < nums.length; i++) {
             counter++;//count iterations and comparisons
             if (nums[i] == number) {
-                found = true;
                 break;
             }
         }
@@ -49,7 +48,6 @@ public class SearchEfficiencies {
             counter2++;
 
             if (nums[k] == (number)) {
-                found = true;
                 break;
             }
             counter2++;
@@ -61,18 +59,13 @@ public class SearchEfficiencies {
         }
         time = System.currentTimeMillis() - time;//calculate time the search took
         System.out.println("The sorted linear search with a 'break' command took: " + time + " miliseconds\nit made: " + counter + " iterations and " + counter2 + " comparisons");
-        time = 0;
         counter = 0;
         counter2 = 0;
         time = System.currentTimeMillis();//get time
         index = binarySearch(nums, 0, nums.length - 1, number);//start search
         counter2++;//increase comparisons counter to keep track of the final comparison
 
-        if (index != -1) {
-            found = true;
-        } else {
-            found = false;
-        }
+
         time = System.currentTimeMillis() - time;//calculate time the search took
         System.out.println("\n\nBinary Search\nThe binary search took: " + time + " miliseconds\nit made: " + counter + " iterations and " + counter2 + " comparisons");
 

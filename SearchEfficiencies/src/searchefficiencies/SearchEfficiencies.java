@@ -40,7 +40,7 @@ public class SearchEfficiencies {
         time = 0;//reset values
         counter = 0;
         System.out.println("Sorting...");
-        quickSort(nums,0,nums.length-1);
+        quickSort(nums, 0, nums.length - 1);
         System.out.println("Sorting done.\n\nSorted linear search");
         time = System.currentTimeMillis();//get current time
         for (int k = 0; k < nums.length; k++) {
@@ -64,7 +64,6 @@ public class SearchEfficiencies {
         time = System.currentTimeMillis();//get time
         index = binarySearch(nums, 0, nums.length - 1, number);//start search
         counter2++;//increase comparisons counter to keep track of the final comparison
-
 
         time = System.currentTimeMillis() - time;//calculate time the search took
         System.out.println("\n\nBinary Search\nThe binary search took: " + time + " miliseconds\nit made: " + counter + " iterations and " + counter2 + " comparisons");
